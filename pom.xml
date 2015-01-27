@@ -4,7 +4,7 @@
   <groupId>org.pentaho</groupId>
   <artifactId>pentaho-aggdesigner</artifactId>
   <packaging>pom</packaging>
-  <version>5.1.5-jhyde-SNAPSHOT</version>
+  <version>5.1.5-jhyde</version>
   <name>Pentaho Aggregate Designer</name>
   <description>Designs aggregate tables for the Mondrian OLAP engine</description>
   <url>http://github.com/pentaho/mondrian</url>
@@ -89,7 +89,7 @@
     <connection>scm:git:git://github.com/julianhyde/pentaho-aggdesigner.git</connection>
     <developerConnection>scm:git:git@github.com:julianhyde/pentaho-aggdesigner.git</developerConnection>
     <url>http://github.com/julianhyde/pentaho-aggdesigner/tree/master</url>
-    <tag>HEAD</tag>
+    <tag>pentaho-aggdesigner-5.1.5-jhyde</tag>
   </scm>
 
   <modules>
@@ -119,7 +119,7 @@
       <dependency>
         <groupId>org.pentaho</groupId>
         <artifactId>pentaho-aggdesigner-algorithm</artifactId>
-        <version>5.1.5-jhyde-SNAPSHOT</version>
+        <version>5.1.5-jhyde</version>
       </dependency>
       <dependency>
         <groupId>pentaho</groupId>
@@ -159,7 +159,7 @@
       <dependency>
         <groupId>org.pentaho</groupId>
         <artifactId>pentaho-aggdesigner-algorithm</artifactId>
-        <version>5.1.5-jhyde-SNAPSHOT</version>
+        <version>5.1.5-jhyde</version>
         <type>test-jar</type>
         <scope>test</scope>
       </dependency>
