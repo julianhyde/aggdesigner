@@ -4,9 +4,10 @@ For a full list of releases, see <a href="https://github.com/julianhyde/pentaho-
 
 ## <a href="https://github.com/julianhyde/pentaho-aggdesigner/releases/tag/pentaho-aggdesigner-5.1.4-jhyde">5.1.4-jhyde</a> / 2015-01-26
 
+* Enable Travis CI
+* Add history, LICENSE, NOTICE
 * Fix <a href="https://github.com/julianhyde/pentaho-aggdesigner/issues/21">[AGGDES-1]</a>,
   "Make commons-logging and dom4j dependencies "provided"
-* Add history, LICENSE, NOTICE
 * Test the algorithm on a more realistic schema, with state depending on
   zipcode
 
