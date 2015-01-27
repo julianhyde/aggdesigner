@@ -2,6 +2,10 @@
 
 For a full list of releases, see <a href="https://github.com/julianhyde/pentaho-aggatedesigner/releases">github</a>.
 
+## <a href="https://github.com/julianhyde/pentaho-aggdesigner/releases/tag/pentaho-aggdesigner-5.1.5-jhyde">5.1.5-jhyde</a> / 2015-01-27
+
+* Make commons-logging dependency "compile"
+
 ## <a href="https://github.com/julianhyde/pentaho-aggdesigner/releases/tag/pentaho-aggdesigner-5.1.4-jhyde">5.1.4-jhyde</a> / 2015-01-26
 
 * Disable some tests; all Travis now runs clean
@@ -23,7 +27,7 @@ For a full list of releases, see <a href="https://github.com/julianhyde/pentaho-
 * Resolve SNAPSHOT dependencies
 * Change distribution repo just while we make a release
 * Add parent POM
-* Move pure algorithm classes into a new maven module 
+* Move pure algorithm classes into a new maven module
   `pentaho-aggdesigner-algorithm`, which does not depend on mondrian
 * Test MonteCarlo algorithm on 10 attributes
 * Code hygiene: Remove `@author`, `@version`, `@since` tags; remove
