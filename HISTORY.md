@@ -1,6 +1,10 @@
 # Aggregate Designer release history and change log
 
-For a full list of releases, see <a href="https://github.com/julianhyde/pentaho-aggatedesigner/releases">github</a>.
+For a full list of releases, see <a href="https://github.com/julianhyde/pentaho-aggdesigner/releases">github</a>.
+
+## <a href="https://github.com/julianhyde/pentaho-aggdesigner/releases/tag/pentaho-aggdesigner-5.1.5-jhyde">5.1.5-jhyde</a> / 2015-01-27
+
+* Make commons-logging dependency "compile"
 
 ## <a href="https://github.com/julianhyde/pentaho-aggdesigner/releases/tag/pentaho-aggdesigner-5.1.5-jhyde">5.1.5-jhyde</a> / 2015-01-27
 
