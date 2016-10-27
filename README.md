@@ -5,6 +5,8 @@
 A tool that designs an optimal set of aggregates (summary tables) for
 OLAP queries.
 
+(Based on <a href="https://github.com/pentaho/pentaho-aggdesigner">Pentaho Aggregate Designer</a>.)
+
 ## Get Aggregate Designer
 
 ### From Maven
