@@ -1,15 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.pentaho</groupId>
-    <artifactId>pentaho-aggdesigner</artifactId>
-    <version>5.1.6-jhyde-SNAPSHOT</version>
+    <groupId>net.hydromatic</groupId>
+    <artifactId>aggdesigner</artifactId>
+    <version>6.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>pentaho-aggdesigner-algorithm</artifactId>
-  <version>5.1.6-jhyde-SNAPSHOT</version>
+  <artifactId>aggdesigner-algorithm</artifactId>
+  <version>6.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>Pentaho Aggregate Designer Algorithm</name>
+  <name>Aggregate Designer Algorithm</name>
   <description>Algorithm that designs aggregate tables</description>
 
   <properties>
@@ -37,8 +37,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>pentaho</groupId>
-      <artifactId>mondrian-data-foodmart-hsqldb</artifactId>
+      <groupId>net.hydromatic</groupId>
+      <artifactId>foodmart-data-hsqldb</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

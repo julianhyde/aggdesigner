@@ -1,24 +1,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.pentaho</groupId>
-  <artifactId>pentaho-aggdesigner</artifactId>
+  <groupId>net.hydromatic</groupId>
+  <artifactId>aggdesigner</artifactId>
   <packaging>pom</packaging>
-  <version>5.1.6-jhyde-SNAPSHOT</version>
-  <name>Pentaho Aggregate Designer</name>
-  <description>Designs aggregate tables for the Mondrian OLAP engine</description>
-  <url>http://github.com/pentaho/mondrian</url>
+  <version>6.0-SNAPSHOT</version>
+  <name>Aggregate Designer</name>
+  <description>Designs aggregate tables</description>
+  <url>http://github.com/julianhyde/aggdesigner</url>
   <inceptionYear>2006</inceptionYear>
 
   <organization>
-    <name>Pentaho</name>
-    <url>http://www.pentaho.com</url>
+    <name>Julian Hyde</name>
+    <url>http://www.hydromatic.net</url>
   </organization>
 
   <licenses>
     <license>
-      <name>Apache 2</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
     </license>
   </licenses>
 
@@ -26,7 +27,7 @@
     <developer>
       <id>julianhyde</id>
       <name>Julian Hyde</name>
-      <email>julianhyde@gmail.com</email>
+      <email>jhyde@apache.org</email>
       <url>https://github.com/julianhyde</url>
       <roles>
         <role>architect</role>
@@ -47,48 +48,54 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- The following list is sorted. -->
+    <commons-io.version>1.3.1</commons-io.version>
+    <commons-lang.version>2.4</commons-lang.version>
+    <commons-logging.version>1.1.3</commons-logging.version>
+    <dom4j.version>1.6.1</dom4j.version>
+    <foodmart-data-hsqldb.version>0.4</foodmart-data-hsqldb.version>
+    <hsqldb.version>2.3.1</hsqldb.version>
+    <jaxen.version>1.1-beta-6</jaxen.version>
+    <jmock.version>2.4.0</jmock.version>
+    <junit.version>4.4</junit.version>
+    <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+    <maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
+    <maven-jar-plugin.version>2.2</maven-jar-plugin.version>
+    <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
+    <maven-scm-provider.version>1.9.1</maven-scm-provider.version>
+    <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+    <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
+    <mondrian.version>3.6.7</mondrian.version>
+    <mysql-connector-java.version>5.1.17</mysql-connector-java.version>
+    <properties-maven-plugin.version>1.0-alpha-2</properties-maven-plugin.version>
   </properties>
 
   <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
     <repository>
-      <id>pentaho</id>
-      <name>Pentaho repository</name>
-      <url>http://repository.pentaho.org/artifactory/repo</url>
-      <layout>default</layout>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
+    <site>
+      <id>aggdesigner.website</id>
+      <name>Aggregate Designer Website</name>
+      <url>file:/home/jhyde/web2/aggdesigner</url>
+    </site>
   </distributionManagement>
 
-  <repositories>
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-        <checksumPolicy>warn</checksumPolicy>
-      </releases>
-      <id>pentaho</id>
-      <name>Pentaho</name>
-      <url>http://repo.pentaho.org/artifactory/repo</url>
-      <layout>default</layout>
-    </repository>
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-        <checksumPolicy>warn</checksumPolicy>
-      </releases>
-      <id>conjars</id>
-      <name>Conjars</name>
-      <url>http://conjars.org/repo</url>
-      <layout>default</layout>
-    </repository>
-  </repositories>
-
-  <issueManagement />
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/julianhyde/aggdesigner/issues</url>
+  </issueManagement>
 
   <scm>
-    <connection>scm:git:git://github.com/julianhyde/pentaho-aggdesigner.git</connection>
-    <developerConnection>scm:git:git@github.com:julianhyde/pentaho-aggdesigner.git</developerConnection>
-    <url>http://github.com/julianhyde/pentaho-aggdesigner/tree/master</url>
+    <connection>scm:git:git://github.com/julianhyde/aggdesigner.git</connection>
+    <developerConnection>scm:git:git@github.com:julianhyde/aggdesigner.git</developerConnection>
+    <url>http://github.com/julianhyde/aggdesigner/tree/master</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -104,81 +111,81 @@
       <dependency>
         <groupId>commons-lang</groupId>
         <artifactId>commons-lang</artifactId>
-        <version>2.4</version>
+        <version>${commons-lang.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-logging</groupId>
         <artifactId>commons-logging</artifactId>
-        <version>1.1.3</version>
+        <version>${commons-logging.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>1.3.1</version>
+        <version>${commons-io.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.pentaho</groupId>
-        <artifactId>pentaho-aggdesigner-algorithm</artifactId>
-        <version>5.1.6-jhyde-SNAPSHOT</version>
+        <groupId>net.hydromatic</groupId>
+        <artifactId>aggdesigner-algorithm</artifactId>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>mondrian</artifactId>
-        <version>3.6.9</version>
+        <version>${mondrian.version}</version>
       </dependency>
       <dependency>
         <groupId>dom4j</groupId>
         <artifactId>dom4j</artifactId>
-        <version>1.6.1</version>
+        <version>${dom4j.version}</version>
       </dependency>
       <dependency>
         <groupId>jaxen</groupId>
         <artifactId>jaxen</artifactId>
-        <version>1.1-beta-6</version>
+        <version>${jaxen.version}</version>
       </dependency>
   
       <!-- Test dependencies. -->
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.4</version>
+        <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.jmock</groupId>
         <artifactId>jmock-junit4</artifactId>
-        <version>2.4.0</version>
+        <version>${jmock.version}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.jmock</groupId>
         <artifactId>jmock-legacy</artifactId>
-        <version>2.4.0</version>
+        <version>${jmock.version}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>org.pentaho</groupId>
-        <artifactId>pentaho-aggdesigner-algorithm</artifactId>
-        <version>5.1.6-jhyde-SNAPSHOT</version>
+        <groupId>net.hydromatic</groupId>
+        <artifactId>aggdesigner-algorithm</artifactId>
+        <version>${project.version}</version>
         <type>test-jar</type>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.hsqldb</groupId>
         <artifactId>hsqldb</artifactId>
-        <version>2.3.1</version>
+        <version>${hsqldb.version}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
-        <version>5.1.17</version>
+        <version>${mysql-connector-java.version}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>pentaho</groupId>
-        <artifactId>mondrian-data-foodmart-hsqldb</artifactId>
-        <version>0.2</version>
+        <groupId>net.hydromatic</groupId>
+        <artifactId>foodmart-data-hsqldb</artifactId>
+        <version>${foodmart-data-hsqldb.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -188,10 +195,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9.1</version>
+        <version>${maven-javadoc-plugin.version}</version>
         <configuration>
           <links>
-            <link>http://docs.oracle.com/javase/7/docs/api/</link>
+            <link>http://docs.oracle.com/javase/8/docs/api/</link>
           </links>
         </configuration>
       </plugin>
@@ -204,7 +211,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.8</version>
+        <version>${maven-dependency-plugin.version}</version>
         <executions>
           <execution>
             <id>properties</id>
@@ -218,7 +225,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>2.2.1</version>
+        <version>${maven-source-plugin.version}</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -232,7 +239,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>${maven-compiler-plugin.version}</version>
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
@@ -241,7 +248,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.2</version>
+        <version>${maven-jar-plugin.version}</version>
         <executions>
           <execution>
             <goals>
@@ -253,7 +260,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>properties-maven-plugin</artifactId>
-        <version>1.0-alpha-2</version>
+        <version>${properties-maven-plugin.version}</version>
         <executions>
           <execution>
             <phase>initialize</phase>
@@ -277,14 +284,14 @@
           <dependency>
             <groupId>org.apache.maven.scm</groupId>
             <artifactId>maven-scm-provider-gitexe</artifactId>
-            <version>1.9.1</version>
+            <version>${maven-scm-provider.version}</version>
           </dependency>
         </dependencies>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.17</version>
+        <version>${maven-surefire-plugin.version}</version>
       </plugin>
     </plugins>
   </build>
