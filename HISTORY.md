@@ -4,6 +4,7 @@ For a full list of releases, see <a href="https://github.com/julianhyde/aggdesig
 
 ## <a href="https://github.com/julianhyde/aggdesigner/releases/tag/aggdesigner-6.0">6.0</a> / under development
 
+* Sign artifacts only if "release" profile is enabled
 * [<a href="https://github.com/julianhyde/aggdesigner/issues/2">AGGDES-2</a>]
   Change groupId:artifactId to "net.hydromatic:aggdesigner"
 * Upgrade to foodmart-data-hsqldb-0.4
