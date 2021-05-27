@@ -5,21 +5,21 @@ Aggregate Designer.
 
 # Release
 
-Make sure that `mvn clean install site` runs on JDK 1.6, 1.7, 1.8,
-on Linux and Windows.
+Make sure that `mvn clean install site` runs on JDK 8
+on Linux, macOS and Windows.
 Also check [Travis CI](https://travis-ci.org/julianhyde/aggdesigner).
 
 Update the [release history](HISTORY.md) and the version number at the
 bottom of [README](README.md).
 
 ```
-mvn clean
-mvn release:clean
+./mvnw clean
+./mvnw release:clean
 git clean -nx
 git clean -fx
 read -s GPG_PASSPHRASE
-mvn -Prelease -Dgpg.passphrase=${GPG_PASSPHRASE} release:prepare
-mvn -Prelease -Dgpg.passphrase=${GPG_PASSPHRASE} release:perform
+./mvnw -Prelease -Dgpg.passphrase=${GPG_PASSPHRASE} release:prepare
+./mvnw -Prelease -Dgpg.passphrase=${GPG_PASSPHRASE} release:perform
 ```
 
 Then go to [Sonatype](https://oss.sonatype.org/#stagingRepositories),

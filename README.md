@@ -24,13 +24,15 @@ Get Aggregate Designer from
 
 ### Download and build
 
-You need Java (1.6 or higher; 1.8 preferred), git and maven (3.2.1 or higher).
+You need Java (JDK 8 or higher), Git and Apache Maven (3.5.4 or higher).
 
 ```bash
 $ git clone git://github.com/julianhyde/aggdesigner.git
 $ cd aggdesigner
-$ mvn install
+$ ./mvnw install
 ```
+
+(On Windows, use `mvnw.cmd` rather than `./mvnw`.)
 
 ## More information
 

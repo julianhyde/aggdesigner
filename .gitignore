@@ -23,3 +23,8 @@ build-res/module-scripts/
 *.war
 *.ear
 *.iml
+
+.mvn/wrapper/maven-wrapper.jar
+
+# End .gitignore
+
