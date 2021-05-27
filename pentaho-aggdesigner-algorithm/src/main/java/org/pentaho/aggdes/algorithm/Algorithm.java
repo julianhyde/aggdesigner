@@ -79,7 +79,7 @@ public interface Algorithm extends Component {
      * Computes cost/benefit metrics for a list of Aggregates.
      *
      * <p>The aggregates must have been created using the
-     * {@link #createAggregate(java.util.List)} method.
+     * {@link #createAggregate(Schema, List)} method.
      *
      * <p>The order of the list is important: the benefit of the i<sup>th</sup>
      * aggregate is its benefit over the previous aggregates 0, ... i - 1.
@@ -210,6 +210,7 @@ public interface Algorithm extends Component {
          * could use this aggregate.
          *
          * <table>
+         * <caption>Cost/benefit for various queries</caption>
          * <tr>
          *   <th>Query</th>
          *   <th>Rows</th>

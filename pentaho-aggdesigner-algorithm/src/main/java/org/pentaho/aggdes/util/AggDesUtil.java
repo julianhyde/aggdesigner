@@ -74,6 +74,8 @@ public class AggDesUtil extends BitSet {
      *
      * @param list List
      * @return List of desired type
+     *
+     * @param <T> Element type
      */
     @SuppressWarnings({"unchecked"})
     public static <T> List<T> cast(List<?> list) {

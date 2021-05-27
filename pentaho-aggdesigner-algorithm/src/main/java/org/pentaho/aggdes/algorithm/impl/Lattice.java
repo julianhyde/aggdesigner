@@ -39,8 +39,8 @@ public interface Lattice {
      * Chooses the next un-materialized aggregate with the highest
      * incremental benefit.
      *
-     * @param maxCost
-     * @param minCostBenefitRatio
+     * @param maxCost Maximum cost
+     * @param minCostBenefitRatio Minimum cost/benefit ratio
      * @param cost Output parameter, is populated with the benefit and the
      *   number of queries which will benefit by materializing the chosen
      *   aggregate

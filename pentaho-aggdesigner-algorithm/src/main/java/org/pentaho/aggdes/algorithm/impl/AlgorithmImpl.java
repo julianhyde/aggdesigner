@@ -38,7 +38,7 @@ import org.pentaho.aggdes.util.AggDesUtil;
  * greedy algorithm which, at each step, chooses the aggregate which offers
  * the greatest benefit over the current set of aggregates.
  *
- * <h3>Cost</h3>
+ * <p><b>Cost</b>
  *
  * <p>If there are <code>N</code> levels, then the lattice has size
  * <code>2<sup>N</sup></code>. Let's suppose that the algorithm creates
