@@ -14,8 +14,8 @@
  */
 package org.pentaho.aggdes.model;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /** Message emitted during validation. */
 public class ValidationMessage implements Comparable<ValidationMessage> {
@@ -23,7 +23,7 @@ public class ValidationMessage implements Comparable<ValidationMessage> {
   /** Message severity. */
   public enum Type {
     OK, WARNING, ERROR
-  };
+  }
 
   private Type type;
 

@@ -37,8 +37,8 @@ License.
     <!-- Sorted by groupId, artifactId. Put versions
          in dependencyManagement in the root POM, not here. -->
     <dependency>
-      <groupId>commons-lang</groupId>
-      <artifactId>commons-lang</artifactId>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
