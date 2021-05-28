@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/julianhyde/aggdesigner.svg?branch=master)](https://travis-ci.org/julianhyde/aggdesigner)
+[![Build Status](https://travis-ci.com/julianhyde/aggdesigner.svg?branch=master)](https://travis-ci.com/julianhyde/aggdesigner)
 
 # Aggregate Designer
 
