@@ -1,21 +1,21 @@
 /*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with
-* the License. You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*
-* Copyright 2006 - 2013 Pentaho Corporation.  All rights reserved.
-*/
-
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.  See the License for the specific
+ * language governing permissions and limitations under the
+ * License.
+ */
 package org.pentaho.aggdes.test.util;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,16 +33,14 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
+/** Utilities for aggregate designer tests. */
 public class TestUtils {
 
-    public static final String nl = System.getProperty("line.separator");
+  public static final String NL = System.getProperty("line.separator");
 
   // ~ Static fields/initializers ============================================
 
-  private static final Log logger = LogFactory.getLog(TestUtils.class);
+  private static final Log LOGGER = LogFactory.getLog(TestUtils.class);
 
   private static Properties testProperties;
 
@@ -58,9 +56,11 @@ public class TestUtils {
   static {
     testProperties = new Properties();
     try {
-      testProperties.load(TestUtils.class.getResourceAsStream("/test.properties")); //$NON-NLS-1$
-      InputStream overrides = TestUtils.class.getResourceAsStream("/testoverride.properties");  //$NON-NLS-1$
-      if(overrides != null) {
+      testProperties.load(
+          TestUtils.class.getResourceAsStream("/test.properties"));
+      InputStream overrides =
+          TestUtils.class.getResourceAsStream("/testoverride.properties");
+      if (overrides != null) {
         testProperties.load(overrides);
       }
     } catch (IOException e) {
@@ -72,7 +72,8 @@ public class TestUtils {
     return MessageFormat.format(testProperties.getProperty(key), args);
   }
 
-  public static void registerDriver(final String jdbcDriverClasspath, final String jdbcDriverClassname)
+  public static void registerDriver(final String jdbcDriverClasspath,
+      final String jdbcDriverClassname)
       throws Exception {
     Driver newDriver;
     if (jdbcDriverClasspath != null && !jdbcDriverClasspath.equals("")) {
@@ -83,12 +84,15 @@ public class TestUtils {
       newDriver = (Driver) Class.forName(jdbcDriverClassname).newInstance();
     }
     DriverManager.registerDriver(newDriver);
-    registeredDrivers.put(jdbcDriverClasspath + ":" + jdbcDriverClassname, newDriver); //$NON-NLS-1$
+    registeredDrivers.put(jdbcDriverClasspath + ":" + jdbcDriverClassname,
+        newDriver);
   }
 
-  public static void deregisterDriver(final String jdbcDriverClasspath, final String jdbcDriverClassname)
+  public static void deregisterDriver(final String jdbcDriverClasspath,
+      final String jdbcDriverClassname)
       throws Exception {
-    Driver registeredDriver = registeredDrivers.get(jdbcDriverClasspath + ":" + jdbcDriverClassname); //$NON-NLS-1$
+    Driver registeredDriver =
+        registeredDrivers.get(jdbcDriverClasspath + ":" + jdbcDriverClassname);
     if (null != registeredDriver) {
       DriverManager.deregisterDriver(registeredDriver);
     }
@@ -96,6 +100,7 @@ public class TestUtils {
 
   // using http://www.kfu.com/~nsayer/Java/dyn-jdbc.html
   // jdbc loading example
+  /** Driver shim. */
   private static class DriverShim implements Driver {
     private Driver driver;
 
@@ -136,10 +141,12 @@ public class TestUtils {
    * Converts a string constant into locale-specific line endings.
    */
   public static String fold(String string) {
-      if (!nl.equals("\n")) {
-          string = string.replace("\n", nl);
-      }
-      return string;
+    if (!NL.equals("\n")) {
+      string = string.replace("\n", NL);
+    }
+    return string;
   }
 
 }
+
+// End TestUtils.java

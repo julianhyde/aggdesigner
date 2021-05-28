@@ -1,33 +1,22 @@
 /*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with
-* the License. You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*
-* Copyright 2006 - 2013 Pentaho Corporation.  All rights reserved.
-*/
-
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.  See the License for the specific
+ * language governing permissions and limitations under the
+ * License.
+ */
 package org.pentaho.aggdes.test;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import org.pentaho.aggdes.algorithm.Algorithm.CostBenefit;
 import org.pentaho.aggdes.algorithm.Progress;
 import org.pentaho.aggdes.algorithm.Result;
-import org.pentaho.aggdes.algorithm.Algorithm.CostBenefit;
 import org.pentaho.aggdes.algorithm.impl.AggregateImpl;
 import org.pentaho.aggdes.algorithm.impl.AlgorithmImpl;
 import org.pentaho.aggdes.algorithm.impl.Cost;
@@ -46,10 +35,20 @@ import org.pentaho.aggdes.test.algorithm.impl.SchemaStub;
 import org.pentaho.aggdes.util.AggDesUtil;
 import org.pentaho.aggdes.util.BitSetPlus;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import junit.framework.TestCase;
 
+/** Unit tests for {@link org.pentaho.aggdes.algorithm.impl.AlgorithmImpl}. */
 public class AlgorithmImplTest extends TestCase {
 
+  /** Mock implementation of {@link CostBenefit} for testing. */
   static class CostBenefitMock implements CostBenefit {
     public void describe(PrintWriter pw) {}
 
@@ -70,6 +69,7 @@ public class AlgorithmImplTest extends TestCase {
     }
   }
 
+  /** Mock implementation of {@link Progress} for testing. */
   static class ProgressStub implements Progress {
     public int messageCount;
 
@@ -78,10 +78,11 @@ public class AlgorithmImplTest extends TestCase {
     }
   }
 
+  /** Mock implementation of {@link Lattice} for testing. */
   static class LatticeStub implements Lattice {
-    List<AggregateImpl> materialized = new ArrayList<AggregateImpl>();
-    List<AggregateImpl> toChoose = new ArrayList<AggregateImpl>();
-    List<Cost> toChooseCosts = new ArrayList<Cost>();
+    final List<AggregateImpl> materialized = new ArrayList<AggregateImpl>();
+    final List<AggregateImpl> toChoose = new ArrayList<AggregateImpl>();
+    final List<Cost> toChooseCosts = new ArrayList<Cost>();
     double lastMaxCost;
     double lastMinCostBenefitRatio;
 
@@ -89,7 +90,8 @@ public class AlgorithmImplTest extends TestCase {
       return new LatticeStub();
     }
 
-    public AggregateImpl chooseAggregate(double maxCost, double minCostBenefitRatio, Cost cost) {
+    @Override public AggregateImpl chooseAggregate(double maxCost,
+        double minCostBenefitRatio, Cost cost) {
       lastMaxCost = maxCost;
       lastMinCostBenefitRatio = minCostBenefitRatio;
       if (toChoose.size() > 0) {
@@ -100,19 +102,20 @@ public class AlgorithmImplTest extends TestCase {
       return null;
     }
 
-    public CostBenefit costBenefitOf(AggregateImpl aggregate) {
+    @Override public CostBenefit costBenefitOf(AggregateImpl aggregate) {
       return new CostBenefitMock();
     }
 
-    public List<AggregateImpl> getMaterializedAggregates() {
+    @Override public List<AggregateImpl> getMaterializedAggregates() {
       return materialized;
     }
 
-    public void materialize(AggregateImpl aggregate) {
+    @Override public void materialize(AggregateImpl aggregate) {
       materialized.add(aggregate);
     }
   }
 
+  /** Extension of {@link AlgorithmImpl} for testing. */
   static class AlgorithmImplStub extends AlgorithmImpl {
     private final Lattice emptyLattice;
     boolean computeAggCostsCalled = false;
@@ -125,29 +128,27 @@ public class AlgorithmImplTest extends TestCase {
     public List<CostBenefit> computeAggregateCosts(Schema schema,
         Map<Parameter, Object> parameterValues, List<Aggregate> aggregateList) {
       computeAggCostsCalled = true;
-      final List<AggregateImpl> aggregateImplList = AggDesUtil.cast(aggregateList);
-      return LatticeImpl.computeAggregateCosts(emptyLattice.copy(), aggregateImplList);
+      final List<AggregateImpl> aggregateImplList =
+          AggDesUtil.cast(aggregateList);
+      return LatticeImpl.computeAggregateCosts(emptyLattice.copy(),
+          aggregateImplList);
     }
 
-    public Result run(Schema schema, Map<Parameter, Object> parameterValues, Progress progress) {
+    @Override public Result run(Schema schema,
+        Map<Parameter, Object> parameterValues, Progress progress) {
       return null;
     }
 
-    @Override // and make public
-    public ResultImpl runAlgorithm(
-        Lattice lattice,
-        double costLimit,
-        double minCostBenefitRatio,
-        int aggregateLimit)
-    {
-      return super.runAlgorithm(lattice, costLimit, minCostBenefitRatio, aggregateLimit);
+    // and make public
+    @Override public ResultImpl runAlgorithm(Lattice lattice, double costLimit,
+        double minCostBenefitRatio, int aggregateLimit) {
+      return super.runAlgorithm(lattice, costLimit, minCostBenefitRatio,
+          aggregateLimit);
     }
 
-    @Override // and make public
-    public void onStart(
-        Map<Parameter, Object> parameterValues,
-        Progress progress)
-    {
+    // and make public
+    @Override public void onStart(Map<Parameter, Object> parameterValues,
+        Progress progress) {
       super.onStart(parameterValues, progress);
     }
   }
@@ -161,8 +162,7 @@ public class AlgorithmImplTest extends TestCase {
    * with N1 ... Nm distinct values, they behave as one uniformly
    * distributed attribute with N1 * ... * Nm distinct values.
    */
-  private static double cardinality(BigInteger n,
-      double factCount) {
+  private static double cardinality(BigInteger n, double factCount) {
     final double nn = n.doubleValue();
     final double a = (nn - 1d) / nn;
     if (a == 1d) {
@@ -190,16 +190,20 @@ public class AlgorithmImplTest extends TestCase {
     assertEquals(params.size(), 3);
 
     assertEquals(params.get(0).getName(), "timeLimitSeconds");
-    assertEquals(params.get(0).getDescription(), "Maximum time, in seconds, to run the algorithm. After this time, the algorithm returns the best solution it has found so far.");
+    assertEquals(params.get(0).getDescription(), "Maximum time, in seconds, "
+        + "to run the algorithm. After this time, the algorithm returns the "
+        + "best solution it has found so far.");
     assertEquals(params.get(0).getType(), Parameter.Type.INTEGER);
     assertEquals(params.get(0).isRequired(), false);
 
     assertEquals(params.get(1).getName(), "aggregateLimit");
-    assertEquals(params.get(1).getDescription(), "Maximum number of aggregates to create");
+    assertEquals(params.get(1).getDescription(),
+        "Maximum number of aggregates to create");
     assertEquals(params.get(1).getType(), Parameter.Type.INTEGER);
 
     assertEquals(params.get(2).getName(), "costLimit");
-    assertEquals(params.get(2).getDescription(), "Maximum total cost of the aggregates produced.");
+    assertEquals(params.get(2).getDescription(),
+        "Maximum total cost of the aggregates produced.");
     assertEquals(params.get(2).getType(), Parameter.Type.DOUBLE);
 
     // TEST createAggregate
@@ -221,7 +225,8 @@ public class AlgorithmImplTest extends TestCase {
     Map<Parameter, Object> parameterValues = new HashMap<Parameter, Object>();
     algorithmImplStub.onStart(parameterValues, progress);
     algorithmImplStub.cancel();
-    ResultImpl result = algorithmImplStub.runAlgorithm(lattice, 0.0, 0.0, 0);
+    ResultImpl result =
+        algorithmImplStub.runAlgorithm(lattice, 0.0, 0.0, 0);
     assertEquals(result.getAggregates().size(), 0);
     assertEquals(result.getCostBenefits().size(), 0);
     assertEquals(progress.messageCount, 1);
@@ -267,7 +272,9 @@ public class AlgorithmImplTest extends TestCase {
     parameterValues = new HashMap<Parameter, Object>();
     algorithmImplStub.onStart(parameterValues, progress);
 
-    result = algorithmImplStub.runAlgorithm(lattice, 1200.0, Double.MAX_VALUE, Integer.MAX_VALUE);
+    result =
+        algorithmImplStub.runAlgorithm(lattice, 1200.0, Double.MAX_VALUE,
+            Integer.MAX_VALUE);
 
     assertEquals(result.getAggregates().size(), 2);
     assertEquals(result.getAggregates().get(0), agg1);
@@ -277,7 +284,7 @@ public class AlgorithmImplTest extends TestCase {
     PrintWriter pw = new PrintWriter(sw);
     result.describe(pw);
 
-    assertTrue(sw.toString().indexOf("Cost/benefit ratio: 0.125") >= 0);
+    assertTrue(sw.toString().contains("Cost/benefit ratio: 0.125"));
 
     assertEquals(lattice.toChoose.size(), 0);
     assertEquals(lattice.lastMaxCost, 1050.0);
@@ -285,40 +292,35 @@ public class AlgorithmImplTest extends TestCase {
     assertTrue(algorithmImplStub.computeAggCostsCalled);
 
     assertEquals(progress.messageCount, 0);
-
-    //
-
   }
 
   /** Tests a lattice with 10 attributes and 3 measures on a fact table with
    * 1 million rows. The attributes are uniformly distributed, independent, and
    * have a small number of distinct values, all different). */
   public void testTenDistinctAttributes() {
-    final int A = 10;
-    final int M = 3;
-    final int F = 1000000;
+    final int a = 10;
+    final int m = 3;
+    final int f = 1000000;
 
     final SchemaStub schema = new SchemaStub() {
       @Override protected StatisticsProvider init(List<Attribute> attributes,
           List<Measure> measures, List<Dimension> dimensions) {
         final TableStub table = new TableStub("t", null);
         BigInteger c = BigInteger.ONE;
-        for (int i = 0; i < A; i++) {
+        for (int i = 0; i < a; i++) {
           c = c.nextProbablePrime();
           attributes.add(new MyAttribute("a" + c, table, c.intValue()));
         }
-        for (int i = 0; i < M; i++) {
+        for (int i = 0; i < m; i++) {
           final String label = "m" + i;
           measures.add(new MeasureStub(1, label, "int", label, table));
         }
         return new StatisticsProvider() {
-          @Override
-          public double getFactRowCount() {
-            return F;
+          @Override public double getFactRowCount() {
+            return f;
           }
 
-          @Override
-          public double getRowCount(List<Attribute> attributes) {
+          @Override public double getRowCount(List<Attribute> attributes) {
             // All attributes are independent
             BigInteger n = BigInteger.ONE;
             for (Attribute attribute : attributes) {
@@ -330,14 +332,11 @@ public class AlgorithmImplTest extends TestCase {
             return cardinality(n, getFactRowCount());
           }
 
-
-          @Override
-          public double getSpace(List<Attribute> attributes) {
+          @Override public double getSpace(List<Attribute> attributes) {
             return attributes.size();
           }
 
-          @Override
-          public double getLoadTime(List<Attribute> attributes) {
+          @Override public double getLoadTime(List<Attribute> attributes) {
             return getSpace(attributes) * getRowCount(attributes);
           }
         };
@@ -349,7 +348,7 @@ public class AlgorithmImplTest extends TestCase {
     final Lattice lattice = new MonteCarloLatticeImpl(schema);
     final AlgorithmImplStub algorithm = new AlgorithmImplStub(lattice);
     algorithm.onStart(parameterValues, progress);
-    final ResultImpl result = algorithm.runAlgorithm(lattice, F, 50d, 10);
+    final ResultImpl result = algorithm.runAlgorithm(lattice, f, 50d, 10);
 
     StringWriter sw = new StringWriter();
     PrintWriter pw = new PrintWriter(sw);
@@ -358,7 +357,7 @@ public class AlgorithmImplTest extends TestCase {
 
     assertEquals(9, result.getAggregates().size(), 0);
     final String s = sw.toString();
-    assertTrue(s, toLinux(s).startsWith("AggregateTable: a2, a3, a5, a13, a29; \n"
+    final String expected = "AggregateTable: a2, a3, a5, a13, a29; \n"
         + "11310 rows, 56550 bytes, 56550 load cost, 164781 query rows saved, used by 16% of queries\n"
         + "AggregateTable: a2, a3, a7, a11, a13; \n"
         + "6006 rows, 30030 bytes, 30030 load cost, 165665 query rows saved, used by 16% of queries\n"
@@ -375,15 +374,16 @@ public class AlgorithmImplTest extends TestCase {
         + "AggregateTable: a2, a3, a5, a19, a23; \n"
         + "13110 rows, 65550 bytes, 65550 load cost, 164481 query rows saved, used by 16% of queries\n"
         + "AggregateTable: a2, a3, a5, a17, a19; \n"
-        + "9690 rows, 48450 bytes, 48450 load cost, 165051 query rows saved, used by 16% of queries\n"));
+        + "9690 rows, 48450 bytes, 48450 load cost, 165051 query rows saved, used by 16% of queries\n";
+    assertTrue(s, toLinux(s).startsWith(expected));
   }
 
   /** Tests a lattice with zipcode (43k), state (50), gender (2), year (5),
    * month (12), and 1 million rows. State depends on zipcode: (zipcode, state)
    * have only 44k values. */
   public void testZipcodeStateGenderYearMonth() {
-    final int M = 2;
-    final int F = 1000000;
+    final int m = 2;
+    final int f = 1000000;
 
     final SchemaStub schema = new SchemaStub() {
       final TableStub table = new TableStub("t", null);
@@ -405,18 +405,16 @@ public class AlgorithmImplTest extends TestCase {
         attributes.add(gender);
         attributes.add(year);
         attributes.add(month);
-        for (int i = 0; i < M; i++) {
+        for (int i = 0; i < m; i++) {
           final String label = "m" + i;
           measures.add(new MeasureStub(1, label, "int", label, table));
         }
         return new StatisticsProvider() {
-          @Override
-          public double getFactRowCount() {
-            return F;
+          @Override public double getFactRowCount() {
+            return f;
           }
 
-          @Override
-          public double getRowCount(List<Attribute> attributes) {
+          @Override public double getRowCount(List<Attribute> attributes) {
             // Attributes are independent, except that state depends on zipcode.
             BigInteger n = BigInteger.ONE;
             for (Attribute attribute : attributes) {
@@ -436,13 +434,11 @@ public class AlgorithmImplTest extends TestCase {
             return cardinality(n, getFactRowCount());
           }
 
-          @Override
-          public double getSpace(List<Attribute> attributes) {
+          @Override public double getSpace(List<Attribute> attributes) {
             return attributes.size();
           }
 
-          @Override
-          public double getLoadTime(List<Attribute> attributes) {
+          @Override public double getLoadTime(List<Attribute> attributes) {
             return getSpace(attributes) * getRowCount(attributes);
           }
         };
@@ -454,7 +450,7 @@ public class AlgorithmImplTest extends TestCase {
     final Lattice lattice = new MonteCarloLatticeImpl(schema);
     final AlgorithmImplStub algorithm = new AlgorithmImplStub(lattice);
     algorithm.onStart(parameterValues, progress);
-    final ResultImpl result = algorithm.runAlgorithm(lattice, F, 4d, 10);
+    final ResultImpl result = algorithm.runAlgorithm(lattice, f, 4d, 10);
 
     StringWriter sw = new StringWriter();
     PrintWriter pw = new PrintWriter(sw);
@@ -464,7 +460,7 @@ public class AlgorithmImplTest extends TestCase {
     assertEquals(6, result.getAggregates().size(), 0);
     final String s = sw.toString();
     System.out.println(s);
-    assertTrue(s, toLinux(s).startsWith("AggregateTable: state, gender, year, month; \n"
+    final String expected = "AggregateTable: state, gender, year, month; \n"
         + "6000 rows, 24000 bytes, 24000 load cost, 497000 query rows saved, used by 50% of queries\n"
         + "AggregateTable: zipcode, state, gender; \n"
         + "86859 rows, 260577 bytes, 260577 load cost, 304380 query rows saved, used by 33% of queries\n"
@@ -476,20 +472,25 @@ public class AlgorithmImplTest extends TestCase {
         + "100 rows, 200 bytes, 200 load cost, 1475 query rows saved, used by 25% of queries\n"
         + "AggregateTable: year, month; \n"
         + "60 rows, 120 bytes, 120 load cost, 1485 query rows saved, used by 25% of queries\n"
-        + "Cost limit: 1000000.0\n" + "Actual cost: 646796.9831198268\n"
-        + "Benefit: 2.188739076654499E7\n"));
+        + "Cost limit: 1000000.0\n"
+        + "Actual cost: 646796.9831198268\n"
+        + "Benefit: 2.188739076654499E7\n";
+    assertTrue(s, toLinux(s).startsWith(expected));
   }
 
   public static String toLinux(String s) {
     return s.replaceAll("\r\n", "\n");
   }
 
+  /** Mock implementation of {@link Attribute} for testing. */
   private static class MyAttribute extends SchemaStub.AttributeStub {
     private final int cardinality;
 
-    public MyAttribute(String label, SchemaStub.TableStub table, int cardinality) {
+    MyAttribute(String label, SchemaStub.TableStub table, int cardinality) {
       super(1, label, "string", label, table);
       this.cardinality = cardinality;
     }
   }
 }
+
+// End AlgorithmImplTest.java

@@ -1,26 +1,18 @@
 /*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with
-* the License. You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*
-* Copyright 2006 - 2013 Pentaho Corporation.  All rights reserved.
-*/
-
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.  See the License for the specific
+ * language governing permissions and limitations under the
+ * License.
+ */
 package org.pentaho.aggdes.test.algorithm.impl;
-
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import org.pentaho.aggdes.algorithm.Algorithm;
 import org.pentaho.aggdes.algorithm.Progress;
@@ -32,6 +24,11 @@ import org.pentaho.aggdes.model.Measure;
 import org.pentaho.aggdes.model.Parameter;
 import org.pentaho.aggdes.model.Schema;
 import org.pentaho.aggdes.model.Table;
+
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Stub implementation for <code>Algorithm</code>. Provides canned
@@ -45,19 +42,18 @@ public class AlgorithmStub implements Algorithm {
     canceled = true;
   }
 
-  public Aggregate createAggregate(Schema schema, List<Attribute> attributeList) {
+  @Override public Aggregate createAggregate(Schema schema,
+      List<Attribute> attributeList) {
     return null;
   }
 
-  public List<CostBenefit> computeAggregateCosts(
-    Schema schema,
-    Map<Parameter, Object> parameterValues,
-    List<Aggregate> aggregateList)
-  {
+  @Override public List<CostBenefit> computeAggregateCosts(Schema schema,
+      Map<Parameter, Object> parameterValues, List<Aggregate> aggregateList) {
     return null;
   }
 
-    public Result run(Schema schema, Map<Parameter, Object> parameterValues, Progress progress) {
+  @Override public Result run(Schema schema,
+      Map<Parameter, Object> parameterValues, Progress progress) {
     canceled = false;
     int i = 0;
     while (!canceled && i < 3) {
@@ -86,7 +82,6 @@ public class AlgorithmStub implements Algorithm {
 
   public List<Parameter> getParameters() {
     Parameter param = new Parameter() {
-
       public String getDescription() {
         return "Description";
       }
@@ -109,6 +104,7 @@ public class AlgorithmStub implements Algorithm {
     return list;
   }
 
+  /** Implementation of {@link org.pentaho.aggdes.algorithm.Result}. */
   public static class ResultStub implements Result {
 
     public void describe(PrintWriter pw) {
@@ -129,6 +125,7 @@ public class AlgorithmStub implements Algorithm {
     }
   }
 
+  /** Implementation of {@link org.pentaho.aggdes.model.Aggregate}. */
   public static class AggregateStub implements Aggregate {
 
     public double estimateRowCount() {
@@ -158,12 +155,13 @@ public class AlgorithmStub implements Algorithm {
     }
 
     public String getCandidateTableName() {
-        // TODO Auto-generated method stub
-        return null;
+      // TODO Auto-generated method stub
+      return null;
     }
 
   }
 
+  /** Implementation of {@link org.pentaho.aggdes.model.Measure}. */
   public static class MeasureStub implements Measure {
 
     public boolean isDistinct() {
@@ -205,3 +203,5 @@ public class AlgorithmStub implements Algorithm {
     }
   }
 }
+
+// End AlgorithmStub.java

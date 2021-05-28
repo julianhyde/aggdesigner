@@ -1,26 +1,18 @@
 /*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with
-* the License. You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*
-* Copyright 2006 - 2013 Pentaho Corporation.  All rights reserved.
-*/
-
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.  See the License for the specific
+ * language governing permissions and limitations under the
+ * License.
+ */
 package org.pentaho.aggdes.test;
-
-import java.io.PrintWriter;
-import java.util.List;
-
-import junit.framework.TestCase;
 
 import org.pentaho.aggdes.algorithm.Algorithm.CostBenefit;
 import org.pentaho.aggdes.algorithm.impl.AggregateImpl;
@@ -32,109 +24,108 @@ import org.pentaho.aggdes.model.Schema;
 import org.pentaho.aggdes.test.algorithm.impl.SchemaStub;
 import org.pentaho.aggdes.util.BitSetPlus;
 
+import java.io.PrintWriter;
+import java.util.List;
+
+import junit.framework.TestCase;
+
 /**
  * Test of LatticeImpl abstract class.
  */
 public class LatticeImplTest extends TestCase {
 
+  /** Mock implementation of {@link CostBenefit} for testing. */
   static class CostBenefitMock implements CostBenefit {
-
     public void describe(PrintWriter pw) {
-      // TODO Auto-generated method stub
-
     }
 
     public double getLoadTime() {
-      // TODO Auto-generated method stub
       return 0;
     }
 
     public double getRowCount() {
-      // TODO Auto-generated method stub
       return 0;
     }
 
     public double getSavedQueryRowCount() {
-      // TODO Auto-generated method stub
       return 0;
     }
 
     public double getSpace() {
-      // TODO Auto-generated method stub
       return 0;
     }
-
   }
 
+  /** Extension of {@link LatticeImpl} for testing. */
   static class LatticeImplMock extends LatticeImpl {
-      LatticeImplMock(Schema schema) {
-        super(schema);
-      }
+    LatticeImplMock(Schema schema) {
+      super(schema);
+    }
 
-      @Override public Lattice copy() {
-          return new LatticeImplMock(schema);
-      }
+    @Override public Lattice copy() {
+      return new LatticeImplMock(schema);
+    }
 
-      public AggregateImpl chooseAggregate(double maxCost, double minCostBenefitRatio, Cost cost) {
-        // TODO Auto-generated method stub
-        return null;
-      }
+    public AggregateImpl chooseAggregate(double maxCost,
+        double minCostBenefitRatio, Cost cost) {
+      return null;
+    }
 
-      public CostBenefit costBenefitOf(AggregateImpl aggregate) {
-        return new CostBenefitMock();
+    public CostBenefit costBenefitOf(AggregateImpl aggregate) {
+      return new CostBenefitMock();
+    }
 
-      }
+    public List<AggregateImpl> getAllMaterialized() {
+      return materializedAggregates;
+    }
 
-      public List<AggregateImpl> getAllMaterialized() {
-        return materializedAggregates;
-      }
+    public Schema getSchema() {
+      return schema;
+    }
 
-      public Schema getSchema() {
-        return schema;
-      }
+    public List<AggregateImpl> getChildren(AggregateImpl agg) {
+      return super.getChildren(agg);
+    }
 
-      public List<AggregateImpl> getChildren(AggregateImpl agg) {
-        return super.getChildren(agg);
-      }
+    public List<AggregateImpl> getParents(AggregateImpl agg) {
+      return super.getParents(agg);
+    }
 
-      public List<AggregateImpl> getParents(AggregateImpl agg) {
-        return super.getParents(agg);
-      }
+    public AggregateImpl getAggregate(BitSetPlus bits) {
+      return super.getAggregate(bits);
+    }
 
-      public AggregateImpl getAggregate(BitSetPlus bits) {
-        return super.getAggregate(bits);
-      }
+    public BitSetPlus toBits(long bits) {
+      return super.toBits(bits);
+    }
 
-      public BitSetPlus toBits(long bits) {
-        return super.toBits(bits);
-      }
+    public List<AggregateImpl> nonMaterializedDescendants(
+        AggregateImpl aggregate, boolean includeSelf) {
+      return super.nonMaterializedDescendants(aggregate, includeSelf);
+    }
 
-      public List<AggregateImpl> nonMaterializedDescendants(AggregateImpl aggregate, boolean includeSelf) {
-        return super.nonMaterializedDescendants(aggregate, includeSelf);
-      }
+    public double getBenefit(AggregateImpl aggregate, int[] benefitCount0) {
+      return super.getBenefit(aggregate, benefitCount0);
+    }
 
-      public double getBenefit(AggregateImpl aggregate, int[] benefitCount0) {
-        return super.getBenefit(aggregate, benefitCount0);
-      }
+    public double estimateCost(double rowCount, double factRowCount) {
+      return super.estimateCost(rowCount, factRowCount);
+    }
 
-      public double estimateCost(double rowCount, double factRowCount) {
-        return super.estimateCost(rowCount, factRowCount);
-      }
+    public AggregateImpl findNearestMaterializedDescendant(
+        AggregateImpl aggregate) {
+      return super.findNearestMaterializedDescendant(aggregate);
+    }
 
-      public AggregateImpl findNearestMaterializedDescendant(AggregateImpl aggregate) {
-        return super.findNearestMaterializedDescendant(aggregate);
-      }
+    public List<AggregateImpl> findMaterializedDirectDescendants(
+        AggregateImpl aggregate) {
+      return super.findMaterializedDirectDescendants(aggregate);
+    }
 
-      public List<AggregateImpl> findMaterializedDirectDescendants(
-          AggregateImpl aggregate) {
-        return super.findMaterializedDirectDescendants(aggregate);
-      }
-
-      public List<AggregateImpl> findMaterializedDirectAscendants(
-          AggregateImpl aggregate)
-      {
-        return super.findMaterializedDirectAscendants(aggregate);
-      }
+    public List<AggregateImpl> findMaterializedDirectAscendants(
+        AggregateImpl aggregate) {
+      return super.findMaterializedDirectAscendants(aggregate);
+    }
   }
 
 
@@ -221,7 +212,7 @@ public class LatticeImplTest extends TestCase {
     // test getBenefit
     // BUG: aggregate.cost doesn't seem to be set correctly
 
-    int bc[] = new int[1];
+    int[] bc = new int[1];
     double benefit = mock.getBenefit(factAgg, bc);
 
     assertEquals(benefit, 0.0);
@@ -276,3 +267,5 @@ public class LatticeImplTest extends TestCase {
 
   }
 }
+
+// End LatticeImplTest.java

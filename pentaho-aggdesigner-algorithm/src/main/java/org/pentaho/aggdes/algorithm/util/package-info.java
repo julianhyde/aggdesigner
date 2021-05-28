@@ -12,37 +12,8 @@
  * language governing permissions and limitations under the
  * License.
  */
-package org.pentaho.aggdes.model;
 
+/** Utilities for implementing algorithms. */
+package org.pentaho.aggdes.algorithm.util;
 
-/**
- * OLAP Cube Level, Child of Hierarchy
- */
-public interface Level {
-
-  /**
-   * Name of the Level
-   *
-   * @return name
-   */
-  String getName();
-
-  /**
-   * Attribute associated with level if available
-   *
-   * Note that All Levels will not have an attribute associated with them.
-   *
-   * @return attribute
-   */
-  Attribute getAttribute();
-
-
-  /**
-   * returns the parent level, null if root level
-   *
-   * @return level
-   */
-  Level getParent();
-}
-
-// End Level.java
+// End package-info.java
