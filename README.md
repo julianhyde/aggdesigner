@@ -14,7 +14,7 @@ language governing permissions and limitations under the
 License.
 {% endcomment %}
 -->
-[![Build Status](https://travis-ci.com/julianhyde/aggdesigner.svg?branch=master)](https://travis-ci.com/julianhyde/aggdesigner)
+[![Build Status](https://travis-ci.com/julianhyde/aggdesigner.svg?branch=main)](https://travis-ci.com/julianhyde/aggdesigner)
 
 # Aggregate Designer
 

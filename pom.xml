@@ -110,7 +110,7 @@ License.
   <scm>
     <connection>scm:git:git://github.com/julianhyde/aggdesigner.git</connection>
     <developerConnection>scm:git:git@github.com:julianhyde/aggdesigner.git</developerConnection>
-    <url>http://github.com/julianhyde/aggdesigner/tree/master</url>
+    <url>http://github.com/julianhyde/aggdesigner/tree/main</url>
     <tag>HEAD</tag>
   </scm>
 
