@@ -18,11 +18,11 @@ License.
   <parent>
     <groupId>net.hydromatic</groupId>
     <artifactId>aggdesigner</artifactId>
-    <version>6.1</version>
+    <version>6.2-SNAPSHOT</version>
   </parent>
 
   <artifactId>aggdesigner-algorithm</artifactId>
-  <version>6.1</version>
+  <version>6.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Aggregate Designer Algorithm</name>
   <description>Algorithm that designs aggregate tables</description>

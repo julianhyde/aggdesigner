@@ -19,7 +19,7 @@ License.
   <groupId>net.hydromatic</groupId>
   <artifactId>aggdesigner</artifactId>
   <packaging>pom</packaging>
-  <version>6.1</version>
+  <version>6.2-SNAPSHOT</version>
   <name>Aggregate Designer</name>
   <description>Designs aggregate tables</description>
   <url>http://github.com/julianhyde/aggdesigner</url>
@@ -112,7 +112,7 @@ License.
     <connection>scm:git:git://github.com/julianhyde/aggdesigner.git</connection>
     <developerConnection>scm:git:git@github.com:julianhyde/aggdesigner.git</developerConnection>
     <url>http://github.com/julianhyde/aggdesigner/tree/main</url>
-    <tag>aggdesigner-6.1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <modules>
