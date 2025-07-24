@@ -5,21 +5,41 @@ Aggregate Designer.
 
 # Release
 
-Make sure that `mvn clean install site` runs on JDK 8
-on Linux, macOS and Windows.
+Make sure `mvn clean install`, `mvn site`, and
+`mvn javadoc:javadoc javadoc:test-javadoc` pass under JDK 8 - 21.
+
 Also check [Travis CI](https://travis-ci.org/julianhyde/aggdesigner).
 
-Update the [release history](HISTORY.md) and the version number at the
-bottom of [README](README.md).
-
+Upgrade dependencies to their latest release: run
+```bash
+./mvnw versions:display-dependency-updates
+./mvnw versions:update-properties
 ```
-./mvnw clean
-./mvnw release:clean
+and commit the modified `pom.xml`.
+
+Update the [release history](HISTORY.md) and the version number at the
+bottom of [README](README.md), and the copyright date in `NOTICE`.
+
+Switch to JDK 21.
+
+Check that the sandbox is clean:
+
+```bash
 git clean -nx
-git clean -fx
-read -s GPG_PASSPHRASE
-./mvnw -Prelease -Dgpg.passphrase=${GPG_PASSPHRASE} release:prepare
-./mvnw -Prelease -Dgpg.passphrase=${GPG_PASSPHRASE} release:perform
+mvn clean
+```
+
+Prepare:
+
+```bash
+export GPG_TTY=$(tty)
+mvn -Prelease -DreleaseVersion=x.y.0 -DdevelopmentVersion=x.(y+1).0-SNAPSHOT release:prepare
+```
+
+Perform:
+
+```bash
+mvn -Prelease -DskipTests release:perform
 ```
 
 Then go to [Sonatype](https://oss.sonatype.org/#stagingRepositories),

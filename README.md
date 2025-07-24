@@ -24,6 +24,10 @@ OLAP queries.
 
 (Based on <a href="https://github.com/pentaho/pentaho-aggdesigner">Pentaho Aggregate Designer</a>.)
 
+## Requirements
+
+Java version 11 or higher.
+
 ## Get Aggregate Designer
 
 ### From Maven
@@ -41,15 +45,20 @@ Get Aggregate Designer from
 
 ### Download and build
 
-You need Java (JDK 8 or higher), Git and Apache Maven (3.5.4 or higher).
-
 ```bash
 $ git clone git://github.com/julianhyde/aggdesigner.git
 $ cd aggdesigner
 $ ./mvnw install
 ```
 
-(On Windows, use `mvnw.cmd` rather than `./mvnw`.)
+On Windows, the last line is
+
+```bash
+> mvnw install
+```
+
+If you are using Java 8, you should add parameters
+`-Dcheckstyle.version=9.3 -Dhsqldb.version=2.5.1`.
 
 ## More information
 
