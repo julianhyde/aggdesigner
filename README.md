@@ -14,7 +14,8 @@ language governing permissions and limitations under the
 License.
 {% endcomment %}
 -->
-[![Build Status](https://travis-ci.com/julianhyde/aggdesigner.svg?branch=main)](https://travis-ci.com/julianhyde/aggdesigner)
+[![Build Status](https://github.com/julianhyde/aggdesigner/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/julianhyde/aggdesigner/actions?query=branch%3Amain)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.hydromatic/aggdesigner/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.hydromatic/aggdesigner)
 
 # Aggregate Designer
 
