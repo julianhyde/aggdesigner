@@ -39,7 +39,7 @@ Get Aggregate Designer from
 <dependency>
   <groupId>net.hydromatic</groupId>
   <artifactId>aggdesigner</artifactId>
-  <version>6.0</version>
+  <version>6.1</version>
 </dependency>
 ```
 
