@@ -66,14 +66,14 @@ License.
     <top.dir>${project.basedir}</top.dir>
 
     <!-- The following list is sorted. -->
-    <checkstyle.version>7.8.2</checkstyle.version>
+    <checkstyle.version>10.26.1</checkstyle.version>
     <commons-lang3.version>3.12.0</commons-lang3.version>
     <commons-logging.version>1.2</commons-logging.version>
     <foodmart-data-hsqldb.version>0.4</foodmart-data-hsqldb.version>
     <hsqldb.version>2.6.0</hsqldb.version>
     <hydromatic-toolbox.version>0.3</hydromatic-toolbox.version>
     <junit.version>4.13.2</junit.version>
-    <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+    <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
