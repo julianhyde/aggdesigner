@@ -16,6 +16,7 @@ License.
 -->
 [![Build Status](https://github.com/julianhyde/aggdesigner/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/julianhyde/aggdesigner/actions?query=branch%3Amain)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.hydromatic/aggdesigner/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.hydromatic/aggdesigner)
+[![javadoc](https://javadoc.io/badge2/net.hydromatic/aggdesigner-algorithm/javadoc.svg)](https://javadoc.io/doc/net.hydromatic/aggdesigner-algorithm)
 
 # Aggregate Designer
 

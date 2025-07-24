@@ -20,19 +20,33 @@ For a full list of releases, see <a href="https://github.com/julianhyde/aggdesig
 
 ## <a href="https://github.com/julianhyde/aggdesigner/releases/tag/aggdesigner-6.1">6.1</a> / 2025-07-24
 
-* Upgrade maven-gpg-plugin from 1.6 to 3.2.8
-* Upgrade maven-javadoc-plugin from 3.0.1 to 3.11.2
-* Upgrade maven-site-plugin from 3.7.1 to 3.21.0
-* Upgrade maven-dependency-plugin from 3.1.1 to 3.8.1
+Release 6.1
+([<a href="https://github.com/julianhyde/aggdesigner/issues/9">AGGDES-9</a>])
+upgrades dependencies (including fixing
+[CVE-2025-48924](https://osv.dev/vulnerability/GHSA-j288-q9x7-2f5v)),
+enables GitHub CI, and uses a new mechanism to deploy to Maven
+Central.
+
+* Include javadoc in deployment
+* Publish to Central Portal, following sunset of OSSRH
+* Upgrade `maven-gpg-plugin` from 1.6 to 3.2.8
+* Upgrade `maven-javadoc-plugin` from 3.0.1 to 3.11.2
+* Upgrade `maven-site-plugin` from 3.7.1 to 3.21.0
+* Upgrade `maven-dependency-plugin` from 3.1.1 to 3.8.1
 * [<a href="https://github.com/julianhyde/aggdesigner/issues/3">AGGDES-3</a>]
-  Upgrade commons-lang3 from 3.12.0 to 3.18.0
-* Upgrade commons-logging from 1.2 to 1.3.5
-* Upgrade foodmart-data-hsqldb from 0.4 to 0.5
-* Upgrade hsqldb from 2.6.0 to 2.7.4
-* Upgrade maven from 3.6.3 to 3.9.9
+  Upgrade `commons-lang3` from 3.12.0 to 3.18.0
+  (fixes [CVE-2025-48924](https://osv.dev/vulnerability/GHSA-j288-q9x7-2f5v))
+* Upgrade `commons-logging` from 1.2 to 1.3.5
+* Upgrade `foodmart-data-hsqldb` from 0.4 to 0.5
+* Upgrade `hsqldb` from 2.6.0 to 2.7.4
+* Upgrade Maven from 3.6.3 to 3.9.9
 * Enable GitHub CI and Dependabot
-* Upgrade checkstyle from 7.8.2 to 10.26.1
-* Upgrade maven-checkstyle-plugin from 3.1.0 to 3.6.0
+* Upgrade `checkstyle` from 7.8.2 to 10.26.1
+* Upgrade `maven-checkstyle-plugin` from 3.1.0 to 3.6.0
+* Travis: quote variables, skip install
+* Rename `master` branch to `main`
+* Remove `pentaho-aggdesigner-core` and `pentaho-aggdesigner-ui` modules
+* Maven wrapper
 
 ## <a href="https://github.com/julianhyde/aggdesigner/releases/tag/aggdesigner-6.0">6.0</a> / 2016-10-27
 
